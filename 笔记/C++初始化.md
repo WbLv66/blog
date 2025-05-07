@@ -1,45 +1,22 @@
 ---
-title: C++初始化
-subtitle:
-date: 2025-02-18T14:25:01+08:00
-slug: be00f5e
-draft: true
-description:
-keywords:
-license:
-comment: false
-weight: 0
-tags:
-  - c++
-  - 初始化
-categories:
-  - 笔记
-hiddenFromHomePage: false
-hiddenFromSearch: false
-hiddenFromRelated: false
-hiddenFromFeed: false
-summary:
-resources:
-  - name: featured-image
-    src: featured-image.jpg
-  - name: featured-image-preview
-    src: featured-image-preview.jpg
-toc: true
-math: false
-lightgallery: false
-password:
-message:
-repost:
-  enable: true
-  url:
 
-# See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
+title: C++初始化
+menu_order: 1
+post_status: publish
+# post_excerpt: This is a post excerpt
+# featured_image: _images/post-image.jpg
+taxonomy:
+    category:
+        - 笔记
+    post_tag:
+        - 初始化
+        - C++
+# custom_fields:
+#     field1: value 1
+#     field2: value 2
+
 ---
 
-<!--more-->
-{{< figure src="https://cdn.pixabay.com/photo/2020/01/22/04/25/street-4784424_1280.jpg">}}
-
-# C++初始化
 
 ## 1. 列表初始化
 
