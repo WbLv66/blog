@@ -19,7 +19,7 @@ taxonomy:
 
 ## 1. SSH配置
 
-请参考使用SSH博客：(./使用SSH.md)
+请参考[使用SSH博客](./使用SSH.md)
 
 配置config文件
 
