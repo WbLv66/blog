@@ -1,72 +1,53 @@
 ---
+
 title: 设置IP变化同步脚本
-subtitle:
-date: 2025-03-31T21:35:03+08:00
-slug: 3e6ebde
-draft: true
-description:
-keywords:
-license:
-comment: false
-weight: 0
-tags:
-  - git
-  - systemd
-categories:
-  - 技术文档
-hiddenFromHomePage: false
-hiddenFromSearch: false
-hiddenFromRelated: false
-hiddenFromFeed: false
-summary:
-resources:
-  - name: featured-image
-    src: featured-image.jpg
-  - name: featured-image-preview
-    src: featured-image-preview.jpg
-toc: true
-math: false
-lightgallery: false
-password:
-message:
-repost:
-  enable: true
-  url:
+menu_order: 1
+post_status: publish
+# post_excerpt: This is a post excerpt
+# featured_image: _images/post-image.jpg
+taxonomy:
+    category:
+        - 技术文档
+    post_tag:
+        - Git
+        - 脚本
+        - Linux
+# custom_fields:
+#     field1: value 1
+#     field2: value 2
 
-# See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---
-
-<!--more-->
-
-# 设置IP变化同步脚本
 
 ## 1. 创建无密码密钥
 
 生成无passphrase密钥的命令
 
-```
+```bash
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/rsa_no_pass -N ""
 ```
 
 在`~/.ssh`添加文件config
+
+```bash
+vim ~/.ssh/config
 ```
-    touch ~/.ssh/config
-    vim ~/.ssh/config
-    # 在里面添加
+
+在里面添加
+
+```ini
     Host gitee.com
     HostName gitee.com
     PreferredAuthentications publickey
     IdentityFile ~/.ssh/rsa_no_pass
 ```
 
+## 2. 将本地Git与Gitee建立联系
 
-## 2. 将本地git与gitee建立联系
-
-将本地无密码公钥添加到gitee上
+将本地无密码公钥添加到Gitee上
 
 创建并切换到main分支
 
-```
+```bash
 git switch -c main 
 ```
 
@@ -74,14 +55,15 @@ git switch -c main
 
 ## 3. 创建脚本
 
-创建Bash脚本，该脚本每次检测IP是否变化，如果变化则更新仓库中的一个文件（例如 current_ip.txt），提交并推送到 gitee 的 main 分支
+创建Bash脚本，该脚本每次检测IP是否变化，如果变化则更新仓库中的一个文件（例如`current_ip.txt`），提交并推送到Gitee的main分支
 
-```
+```bash
 vim update_ip.sh
 ```
 
 添加内容
-```
+
+```bash
 #!/bin/bash
 export GIT_SSH_COMMAND="ssh -i /home/lwb/.ssh/rsa_no_pass"
 # 定义仓库路径
@@ -132,21 +114,25 @@ fi
 
 并确保文件具有可执行权限
 
-```
+```bash
 sudo chmod +x update_ip.sh
 ```
 
 测试脚本
 
-```
+```bash
 ./update_ip.sh
 ```
 
 ## 4. 使用 systemd 服务
 
-创建 systemd 服务单元,新建一个服务单元文件，例如``sudo vim /etc/systemd/system/update-ip.service``,内容如下：
+创建 systemd 服务单元,新建一个服务单元文件
 
-```
+```bash
+sudo vim /etc/systemd/system/update-ip.service
+````
+
+```ini
 [Unit]
 Description=Run update_ip.sh script
 
@@ -158,9 +144,13 @@ WorkingDirectory=/home/lwb/repository/A100IP
 ExecStart=/home/lwb/repository/A100IP/update_ip.sh
 ```
 
-新建一个 timer 单元文件，这里设置开机后延迟1分钟启动，然后每隔5分钟执行一次。例如 ``sudo vim /etc/systemd/system/update-ip.timer``，内容如下：
+新建一个timer单元文件，这里设置开机后延迟1分钟启动，然后每隔5分钟执行一次
 
+```bash
+sudo vim /etc/systemd/system/update-ip.timer
 ```
+
+```ini
 [Unit]
 Description=Run update_ip.sh every 5 minutes
 
@@ -173,16 +163,10 @@ Persistent=true
 WantedBy=timers.target
 ```
 
-运行以下命令：
+运行以下命令
 
-```
+```bash
 sudo systemctl daemon-reload
 sudo systemctl enable update-ip.timer
 sudo systemctl start update-ip.timer
 ```
-
-
-
-
-
-      
