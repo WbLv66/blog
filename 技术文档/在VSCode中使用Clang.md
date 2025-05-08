@@ -1,70 +1,50 @@
 ---
-title: Vscode+clang
-subtitle:
-date: 2025-02-05T15:44:45+08:00
-slug: 51dd9c5
-draft: true
-description:
-keywords:
-license:
-comment: false
-weight: 0
-tags:
-  - vscode
-  - clang
-  - linux
-categories:
-  - 技术文档
-hiddenFromHomePage: false
-hiddenFromSearch: false
-hiddenFromRelated: false
-hiddenFromFeed: false
-summary:
-resources:
-  - name: featured-image
-    src: featured-image.jpg
-  - name: featured-image-preview
-    src: featured-image-preview.jpg
-toc: true
-math: false
-lightgallery: false
-password:
-message:
-repost:
-  enable: true
-  url:
 
-# See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
+title: 在VSCode中使用Clang
+menu_order: 1
+post_status: publish
+# post_excerpt: This is a post excerpt
+# featured_image: _images/post-image.jpg
+taxonomy:
+    category:
+        - 技术文档
+    post_tag:
+        - VSCode
+        - Clang
+        - Linux
+# custom_fields:
+#     field1: value 1
+#     field2: value 2
+
 ---
-
-<!--more-->
-{{< figure src="https://cdn.pixabay.com/photo/2024/05/25/15/01/ai-generated-8787240_1280.jpg">}}
-# vscode+clang
 
 优势：代码提示更快；可以进行静态分析
 
-## 1. 在ubuntu上安装clang（推荐14及以上，有类型提示）
-```
+## 1. 在Ubuntu上安装Clang（推荐14及以上，有类型提示）
+
+```bash
 wget https://apt.llvm.org/llvm.sh
 chmod u+x llvm.sh
 sudo ./llvm.sh 14
-或者使用清华源
+# 或者使用清华源
 # 下载脚本
 wget https://mirrors.tuna.tsinghua.edu.cn/llvm-apt/llvm.sh
 chmod +x llvm.sh
 sudo ./llvm.sh 14 all -m https://mirrors.tuna.tsinghua.edu.cn/llvm-apt
 ```
-将clang14和clang++14设为默认版本
-```
- sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-14 200
- 
- sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-14 200
- 
-  # 列出已存在的替代项
- sudo update-alternatives --display clang++
 
+将clang14和clang++14设为默认版本
+
+```bash
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-14 200
+
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-14 200
+
+# 列出已存在的替代项
+sudo update-alternatives --display clang++
  ```
-## 2. 在vscode上安装插件
+
+## 2. 在VSCode上安装插件
 
 禁用微软c++插件的代码提示功能
 
@@ -74,13 +54,22 @@ sudo ./llvm.sh 14 all -m https://mirrors.tuna.tsinghua.edu.cn/llvm-apt
 
 下载clangd插件和codelldb插件，codelldb插件在安装时会自动额外下载一个包
 
-安装好后在clangd插件设置中勾选enable code completion，在clangd插件设置Arguments里面添加``--compile-commands-dir=${workspaceFolder}/build`` 和 ``--header-insertion=never``，Path设置为``/usr/bin/clangd-14``
+安装好后在clangd插件设置中勾选enable code completion，在clangd插件设置Arguments里面添加
+
+```ini
+--compile-commands-dir=${workspaceFolder}/build
+--header-insertion=never
+```
+
+Path设置为`/usr/bin/clangd-14`
+
 ## 3. 配置.clang-format
 
 此文件可以帮助代码格式化，放在主目录便可以了，为了让文件能在保存时自动格式化可以在`settings.json`里面写入`"editor.formatOnSave": true`
 
 如下为我的`.clang-format`配置
-```
+
+```ini
 # 基于那个配置文件
 BasedOnStyle: google
 # 访问说明符的偏移(public private)
@@ -91,13 +80,14 @@ IndentWidth: 4
 ColumnLimit: 80
 
 ```
+
 ## 4. 配置.clang-tidy
 
 此文件可以进行代码的静态分析，放在主目录便可以了，借助Cmake的输出文件可以让代码的静态分析更加准确。在`CMakeLists.txt`里面写入`set(CMAKE_EXPORT_COMPILE_COMMANDS ON)`
 
 如下为我的`clang-tidy`配置
 
-```
+```ini
 ---
 Checks: '-*,
         clang-analyzer-core.*,
@@ -189,7 +179,4 @@ CheckOptions:
     value:           'true'  # 检测未使用的参数。
 ...
 
-
-
 ```
-

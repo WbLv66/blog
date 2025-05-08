@@ -1,43 +1,20 @@
 ---
+
 title: C++引用
-subtitle:
-date: 2025-02-08T11:57:51+08:00
-slug: 1f15d8a
-draft: true
-description:
-keywords:
-license:
-comment: false
-weight: 0
-tags:
-  - C++
-categories:
-  - 笔记
-hiddenFromHomePage: false
-hiddenFromSearch: false
-hiddenFromRelated: false
-hiddenFromFeed: false
-summary:
-resources:
-  - name: featured-image
-    src: featured-image.jpg
-  - name: featured-image-preview
-    src: featured-image-preview.jpg
-toc: true
-math: false
-lightgallery: false
-password:
-message:
-repost:
-  enable: true
-  url:
+menu_order: 1
+post_status: publish
+# post_excerpt: This is a post excerpt
+# featured_image: _images/post-image.jpg
+taxonomy:
+    category:
+        - 笔记
+    post_tag:
+        - C++
+# custom_fields:
+#     field1: value 1
+#     field2: value 2
 
-# See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---
-
-<!--more-->
-{{< figure src="https://cdn.pixabay.com/photo/2023/10/21/15/52/ai-generated-8331710_1280.png"  >}}
-# 左值引用与右值引用
 
 ## 1. 左值与右值
 
@@ -45,7 +22,7 @@ repost:
 
 左值是可以**取地址**的对象，比如变量名和解引用的指针变量。
 
-```C++
+```cpp
 // 以下的a、p、*p、b都是左值
 int a = 3;
 int* p = &a;
@@ -57,7 +34,7 @@ const int b = 2;
 
 右值是**不能取地址**的对象，比如常量、临时变量、函数返回值、运算符返回值等。
 
-```C++
+```cpp
 double x = 1.3, y = 3.8;
 // 以下几个都是常见的右值
 10;                 // 字面常量
@@ -73,7 +50,7 @@ fmin(x, y);        // 传值返回函数的返回值
 
 是指对左值的引用，作用是**避免对象拷贝**。
 
-```C++
+```cpp
 int& ra = a;
 ```
 
@@ -81,7 +58,7 @@ int& ra = a;
 
 是指对右值的引用，作用是**延长对象的生命周期**。
 
-```C++
+```cpp
 int&& rr = 10;
 ```
 
@@ -90,7 +67,7 @@ int&& rr = 10;
 - 左值引用可以指向左值，在指向右值时需要const修饰
 - 右值引用可以指向右值，在指向左值时需要std::move()
 
-```C++
+```cpp
 const int& rt4 = 8; // 临时对象的生命周期会被延长至引用的作用域结束
 int t = 10;
 int&& rrt = std::move(t);
@@ -121,7 +98,7 @@ int&& rrt = std::move(t);
 
 **函数模板**（不是类模板）中的&&不表示右值引用，而是万能引用，模板类型必须通过推断才能确定，其接收左值后会被推导为左值引用，接收右值后会被推导为右值引用。
 
-```C++
+```cpp
 void Func(int& x) { cout << "左值引用" << endl; }
 
 void Func(int&& x) { cout << "右值引用" << endl; }
@@ -136,11 +113,13 @@ void f(T&& t)  // 万能引用
 > [!NOTE]
 > 右值引用后便失去了右值的属性。
 
-f(10); 　　10是右值，传参后万能引用被推导为右值引用，但在f()函数中它变为了左值，因此实际调用的函数是void Func(int& x)。
+f(10);
+
+10是右值，传参后万能引用被推导为右值引用，但在f()函数中它变为了左值，因此实际调用的函数是void Func(int& x)。
 
 为了实现完美转发，除了使用万能引用之外，我们还要用到std::forward（C++11），它在传参的过程中保留对象的原生类型属性。
 
-```C++
+```cpp
 void Func(int& x) { cout << "左值引用" << endl; }
 
 void Func(int&& x) { cout << "右值引用" << endl; }
@@ -164,4 +143,4 @@ int main()
 > 实现完美转发需要用到万能引用和 std::forward。
 
 ---
-本笔记参考了「Hoshino373」的文章，原文链接为：<https://blog.csdn.net/m0_59938453/article/details/125858335>
+本笔记参考了「Hoshino373」的[文章](https://blog.csdn.net/m0_59938453/article/details/125858335)

@@ -1,58 +1,29 @@
 ---
+
 title: 在Linux上使用v2ray
-subtitle:
-date: 2025-02-05T16:10:12+08:00
-slug: b535a54
-draft: true
-description:
-keywords:
-license:
-comment: false
-weight: 0
-tags:
-  - linux
-  - v2ray
-categories:
-  - 技术文档
-hiddenFromHomePage: false
-hiddenFromSearch: false
-hiddenFromRelated: false
-hiddenFromFeed: false
-summary:
-resources:
-  - name: featured-image
-    src: featured-image.jpg
-  - name: featured-image-preview
-    src: featured-image-preview.jpg
-toc: true
-math: false
-lightgallery: false
-password:
-message:
-repost:
-  enable: true
-  url:
+menu_order: 1
+post_status: publish
+# post_excerpt: This is a post excerpt
+# featured_image: _images/post-image.jpg
+taxonomy:
+    category:
+        - 技术文档
+    post_tag:
+        - v2ray
+        - Linux
+# custom_fields:
+#     field1: value 1
+#     field2: value 2
 
-# See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---
-
-<!--more-->
-{{< figure src="https://cdn.pixabay.com/photo/2022/12/09/05/04/christmas-7644625_1280.jpg">}}
-# 在Linux上使用v2ray
 
 ## 1. 安装 v2ray-core 和 v2rayA
 
 ### 1.1 安装v2ray-core
 
-参考网站：[检测到 geosite.dat, geoip.dat 文件或 v2ray-core 可能未正确安装 – 爱思考的人 (aisikao.ren)](https://aisikao.ren/22633/)
+ [v2ray-core](https://github.com/v2fly/v2ray-core)
 
- v2ray-core:https://github.com/v2fly/v2ray-core
-
-可以在上面任何一个网趾下载安装文件，下载的时候需要注意你的 CPU 架构，下载好之后解开压缩包，然后把可执行文件复制到 /usr/local/bin/ 或 /usr/bin/（推荐前者），把几个 dat 格式的文件复制到 /usr/local/share/v2ray/ 或者 /usr/share/v2ray/（推荐前者，xray 用户记得把文件放到 xray 文件夹），最后授予 v2ray/xray 可执行权限。
-
-以下是用 bash 命令操作的示例：
-
-```
+```bash
 ## 注意要根据 CPU 架构安装不同版本
 wget https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip
 
@@ -69,7 +40,7 @@ sudo install -Dm755 ./v2ray/v2ray /usr/local/bin/v2ray
 
 参考网站[介绍 - v2rayA](https://v2raya.org/docs/prologue/introduction/)
 
-```
+```bash
 ## 注意要根据 CPU 架构安装不同版本
 wget https://github.com/v2rayA/v2rayA/releases/latest/download/v2rayA/v2rayA/releases
 
@@ -78,13 +49,13 @@ sudo apt install /path/download/installer_debian_xxx_vxxx.deb ### 自行替换 d
 
 启动 v2rayA
 
-```
+```bash
 sudo systemctl start v2raya.service
 ```
 
 设置开机自动启动
 
-```
+```bash
 sudo systemctl enable v2raya.service
 ```
 
@@ -92,11 +63,7 @@ sudo systemctl enable v2raya.service
 
 如果你通过 2017 端口 如 [http://localhost:2017](http://localhost:2017/) 无法访问 UI 界面，请检查你的服务是否已经启动。
 
-
-
 在第一次进入页面时，你需要创建一个管理员账号，请妥善保管你的用户名密码，如果遗忘，使用`sudo v2raya --reset-password`命令重置。
-
-
 
 设置
 
@@ -111,9 +78,6 @@ sudo systemctl enable v2raya.service
 9. 自动更新订阅为`服务端启动时更新订阅`
 10. 解析订阅链接/更新时优先使用为`跟随透明代理/系统代理`
 
-
-
 ### 注意
 
 关机前记得关闭服务，否则下次开机自动开启服务
-
