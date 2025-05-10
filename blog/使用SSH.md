@@ -83,7 +83,10 @@ ssh username@server_ip
 
 然后输入密码，并在远程服务器的终端中修改SSH配置
 
-> 此操作将修改全局SSH配置，会影响到其他用户
+[warning] 警告
+
+此操作将修改全局SSH配置，会影响到其他用户
+[/warning]
 
 ```bash
 sudo vim /etc/ssh/sshd_config
