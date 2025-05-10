@@ -15,8 +15,22 @@ taxonomy:
 #     field2: value 2
 
 ---
-[showcard icon="fa-regular fa-bookmark" title="第一章绪论" img="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png" color="#cce1eb"]./第一章绪论[/showcard]
+[three_cards
+    title1="第一章绪论"
+    image1="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png"
+    link1="./第一章绪论"
+
+    title2="第一章绪论" 
+    image2="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png"
+    link2="./第一章绪论"
+
+    title3="第三章总结" 
+    image3="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png"
+    link3="./第一章绪论"
+]
+[/three_cards ]
+<!-- [showcard icon="fa-regular fa-bookmark" title="第一章绪论" img="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png" color="#cce1eb"]./第一章绪论[/showcard]
 
 [showcard icon="fa-regular fa-bookmark" title="第一章绪论" img="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png" color="#cce1eb"]./第一章绪论[/showcard]
 
-[showcard icon="fa-regular fa-bookmark" title="第一章绪论" img="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png" color="#cce1eb"]./第一章绪论[/showcard]
+[showcard icon="fa-regular fa-bookmark" title="第一章绪论" img="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png" color="#cce1eb"]./第一章绪论[/showcard] -->
