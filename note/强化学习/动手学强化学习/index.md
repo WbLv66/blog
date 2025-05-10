@@ -15,4 +15,4 @@ taxonomy:
 #     field2: value 2
 
 ---
-[showcard icon="fa-regular fa-bookmark" title="第一章绪论" img="https://s.nmxc.ltd/sakurairo_vision/asuhe/avatar.jpg" color="#cce1eb"]./第一章绪论[/showcard]
+[showcard icon="fa-regular 12 fa-bookmark" title="第一章绪论" img="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png" color="#cce1eb"]./第一章绪论[/showcard]
