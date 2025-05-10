@@ -139,8 +139,8 @@ int main()
 }
 ```
 
-> [!NOTE]
-> 实现完美转发需要用到万能引用和 std::forward。
+[warning]实现完美转发需要用到万能引用和 std::forward[/warning]
+<!-- > 实现完美转发需要用到万能引用和 std::forward。 -->
 
 ---
 本笔记参考了「Hoshino373」的[文章](https://blog.csdn.net/m0_59938453/article/details/125858335)

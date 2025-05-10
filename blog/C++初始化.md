@@ -28,6 +28,7 @@ std::initializer_list在一下情况会自动构造对象:
 2. 用于赋值或者函数调用，并且赋值运算符/函数需要能够接受std::initializer_list参数
 3. 绑定到auto或者包括在范围 for 循环中
 
-> [!NOTE]
-> auto p = { 1,2,3 };//能够推导出类型为std::initializer_lis  
-> auto p2  { 1,2,3 };//无法推导
+[warning]
+auto p = { 1,2,3 };//能够推导出类型为std::initializer_lis  
+auto p2  { 1,2,3 };//无法推导
+[/warning]
