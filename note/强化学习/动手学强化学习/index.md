@@ -33,10 +33,17 @@ taxonomy:
     min_width="280px"
 ]
 
-<!-- [fullwidth_card
-    icon="fa-regular fa-bookmark"
-    title="全宽卡片示例"
-    img="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png"
-    color="#cce1eb"
-    title_size="2rem"
-]./第一章绪论[/fullwidth_card] -->
+[double_cards
+
+    title1="第一章绪论"
+    img1="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png"
+    link1="./第一章绪论.md"
+
+    icon2="fa-solid fa-pen"
+    title2="第二章方法"
+    img2="http://47.94.1.159/wp-content/uploads/2025/05/1746634485-8d9610b0417f80febdd1b0b5625182ce.png"
+    link2="./第一章绪论.md"
+    
+    gap="50px"
+    min_width="450px"
+]
